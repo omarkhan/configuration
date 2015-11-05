@@ -26,6 +26,8 @@
       - lms
       nginx_default_sites:
       - lms
-    - edxlocal
-    - mongo
+    - role: edxlocal
+      when: EDXAPP_MYSQL_HOST == 'localhost'
+    - role: mongo
+      when: "'localhost' in EDXAPP_MONGO_HOSTS"
     - edxapp
